@@ -6,5 +6,5 @@ function sendMail(){
 
 
     }
-    emailjs.send("service_jqa6bnq","template_3v34paf",parms).then(alert('Email sent!!'))
+    emailjs.send("service_id","template_id",parms).then(alert('Email sent!!'))
 }
