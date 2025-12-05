@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amina S - Full Stack Developer</title>
+    <link rel="icon" type="image/x-icon" href="generated-image.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+
+        .timeline-path {
+            stroke-dasharray: 20 10;
+            animation: dash 3s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -30;
+            }
+        }
+
+
+        .content-box {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .content-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 4px 16px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 0.95) 100%);
+        }
+
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+
+        .project-icon {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .movie-project .project-image {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+        }
+
+        .task-project .project-image {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+        }
+
+        .project-text {
+            color: #374151;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .project-title {
+            background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .learn-more-btn {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .learn-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .learn-more-btn:hover::before {
+            left: 100%;
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 41, 55, 0.3);
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+        }
+
+        .learn-more-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .learn-more-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-icon {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3));
+        }
+
+        .hero-shape {
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #EAB308 100%);
+            border-radius: 50% 20% 80% 30%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatShape 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .wave-bottom {
+            background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+            position: relative;
+        }
+
+        .wave-bottom::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23C0C0C0'%3E%3C/path%3E%3C/svg%3E") no-repeat;
+            background-size: cover;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .projects-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            animation: decorationFloat 8s ease-in-out infinite;
+        }
+
+        .decoration-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .decoration-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .decoration-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            top: 50%;
+            right: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#home">
+                    <div class="text-2xl font-bold text-gray-900">Amina S</div>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-yellow-500 font-medium transition-colors">Home</a>
+                    <a href="#skills" class="text-gray-700 hover:text-yellow-500 font-medium transition-colors">Skills</a>
+                    <a href="#experience" class="text-gray-700 hover:text-yellow-500 font-medium transition-colors">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-yellow-500 font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-700 hover:text-yellow-500 font-medium transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div>
+                    <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        Hello It's me<br>
+                        <span class="text-yellow-500">Amina S</span>
+                    </h1>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-600">
+                        I am a <span class="font-semibold text-gray-900">Full stack Developer</span> specializing in
+                        building end-to-end web applications using Python (Django) for the backend and React &
+                        JavaScript for the frontend. I love turning ideas into fully functional applications — from
+                        crafting intuitive interfaces to building robust APIs and connecting them seamlessly with
+                        databases. When I'm not coding, I'm exploring new frameworks, sharpening my UI/UX skills, or
+                        diving deep into database optimization to deliver faster, smarter solutions.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 items-start">
+                    <a href="" download>
+                        <button
+                            class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-colors flex items-center gap-3">
+                            <i class="fas fa-download"></i>
+                            DOWNLOAD RESUME
+                        </button>
+                    </a>
+
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/in/amina-shameer32" target="_blank"
+                            class="bg-gray-900 hover:bg-gray-800 text-white w-14 h-14 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://github.com/amina-s232" target="_blank"
+                            class="bg-gray-900 hover:bg-gray-800 text-white w-14 h-14 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Hero Image -->
+            <div class="relative lg:h-screen flex items-center justify-center">
+                <div class="hero-shape absolute inset-0 w-full h-4/5"></div>
+                <div class="relative z-10 max-w-md">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDQwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkludGVyIj5BbWluYSBTPC90ZXh0Pgo8L3N2Zz4K"
+                        alt="Amina S - Full Stack Developer" class="w-full h-auto rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <!-- Left Column -->
+                <div>
+                    <h2 class="text-5xl lg:text-6xl font-black text-gray-900 mb-8 uppercase">
+                        MY SKILLS
+                    </h2>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-8">
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        I build full-stack solutions with Python (Django) on the backend and React & JavaScript on the
+                        frontend, crafting seamless user experiences backed by robust APIs and well-structured databases
+                    </p>
+
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            PYTHON
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            DJANGO
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            CSS
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            HTML
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            REST APIS
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            REACT
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            JAVASCRIPT
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            BOOTSTRAP
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            MYSQL
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            POSTGRESQL
+                        </div>
+                        <div
+                            class="skill-badge bg-white border-2 border-gray-200 rounded-full px-6 py-3 text-center font-semibold text-gray-800 hover:border-yellow-400">
+                            SQLITE
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Timeline Section -->
+    <section class="py-20 bg-gray-50 min-h-screen relative">
+        <!-- Floating Background Shapes -->
+        <div class="floating-shapes">
+            <div class="shape w-32 h-32 bg-orange-300 rounded-full top-20 left-10"></div>
+            <div class="shape w-24 h-24 bg-yellow-300 rounded-full top-40 right-20"></div>
+            <div class="shape w-20 h-20 bg-red-300 rounded-full bottom-32 left-1/4"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-8">
+            <div class="text-center mb-8">
+            </div>
+
+            <!-- Timeline Container -->
+            <div id="experience" class="relative h-screen flex items-center">
+                <!-- SVG Timeline Path -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800">
+                    <path d="M200 200 Q400 100 600 200 Q800 300 1000 200" fill="none" stroke="#f97316" stroke-width="4"
+                        class="timeline-path" />
+                </svg>
+
+                <!-- Professional Experience Box - Position 01 -->
+                <div class="absolute top-16 left-8 w-80">
+                    <div class="content-box bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Experience</h3>
+                        <h4 class="text-xl font-bold text-orange-600 mb-2">LUMINAR TECHNOLAB</h4>
+                        <h5 class="text-lg font-semibold text-gray-700 mb-3">Python Django Trainee</h5>
+
+                        <p class="text-sm text-gray-600 mb-4">
+                            Created and developed web applications using Python Django and modern frontend frameworks
+                            (React). Developed and integrated RESTful APIs for seamless frontend & backend integration.
+                        </p>
+
+                        <div class="mb-4">
+                            <h6 class="font-semibold text-gray-900 mb-2 text-sm">Key Achievements</h6>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>• Built responsive web applications</li>
+                                <li>• Implemented JWT authentication</li>
+                                <li>• Worked with PostgreSQL database</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Higher Secondary Education Box - Position 02 (Center) -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80">
+                    <div class="content-box bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Higher Secondary Education</h3>
+                        <h4 class="text-xl font-bold text-amber-600 mb-2">Lajanathul Muhammadiya HSS</h4>
+                        <h5 class="text-lg font-semibold text-gray-700 mb-3">12th Standard Science</h5>
+
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-1">94%</div>
+                                <p class="text-green-700 text-sm font-semibold">Academic Performance</p>
+                                <p class="text-green-600 text-xs">Science Stream with 94% marks</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Physics</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Chemistry</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded">Mathematics</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded">Biology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Education Box - Position 03 -->
+                <div class="absolute bottom-16 right-8 w-80">
+                    <div class="content-box bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Secondary Education</h3>
+                        <h4 class="text-xl font-bold text-red-600 mb-2">Lajanathul Muhammadiya HSS</h4>
+                        <h5 class="text-lg font-semibold text-gray-700 mb-3">10th Standard</h5>
+                    </div>
+                </div>
+
+                <!-- Interactive Elements -->
+                <div class="absolute top-8 right-8">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <div class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 0.5s">
+                            </div>
+                            <div class="w-3 h-3 bg-red-400 rounded-full animate-pulse" style="animation-delay: 1s">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                    <div class="flex space-x-2">
+                        <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-amber-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Silver Background -->
+    <section id="projects" class="py-20 relative" style="background-color: #C0C0C0;">
+        <!-- Decorative Background Elements -->
+        <div class="projects-decoration">
+            <div class="decoration-circle"></div>
+            <div class="decoration-circle"></div>
+            <div class="decoration-circle"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl lg:text-5xl font-bold mb-4 flex items-center justify-center gap-4">
+                    <i class="section-icon fas fa-cogs"></i>
+                    Projects
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Here are some of my featured projects showcasing my skills in full-stack development
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Project 1 - Movie Management -->
+                <div class="project-card movie-project rounded-2xl p-8 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-gray-900/20 rounded-2xl"></div>
+                    <div class="relative z-10">
+                        <div class="mb-6">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mb-6 flex items-center justify-center">
+                                <i class="fas fa-film text-white text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class=" space-y-4">
+                            <p class="leading-relaxed">
+                                A web application designed to manage movie records efficiently, featuring full CRUD
+                                operations to add, edit, delete, and view entries. Implemented customized Django
+                                Admin for streamlined movie data management and integrated Bootstrap for a responsive,
+                                intuitive user interface.
+                            </p>
+                            <button
+                                class="border-2 border-white  px-6 py-2 rounded-lg hover:bg-white hover:text-gray-800 transition-colors flex items-center gap-2">
+                                Learn More <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Task Management -->
+                <div class="project-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-900/20 to-gray-900/20 rounded-2xl"></div>
+                    <div class="relative z-10">
+                        <div class="mb-6">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg mb-6 flex items-center justify-center">
+                                <i class="fas fa-tasks text-white text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class=" space-y-4">
+                            <p class="leading-relaxed">
+                                A task management web application with user authentication (login, logout, register)
+                                and full CRUD functionality for creating, editing, deleting, and filtering tasks.
+                                Features include due dates, task completion tracking, and search/filter options for
+                                efficient
+                                organization. Leveraged the Django Admin panel and ORM for backend management, with
+                                persistent storage via file handling, SQLite.
+                            </p>
+                            <button
+                                class="border-2 border-white  px-6 py-2 rounded-lg hover:bg-white hover:text-gray-800 transition-colors flex items-center gap-2">
+                                Learn More <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <!-- Left Column -->
+                <div>
+                    <h2 class="text-5xl lg:text-6xl font-black text-teal-600 mb-8 uppercase">
+                        LET'S CONNECT
+                    </h2>
+
+                    <div class="space-y-5">
+                        <div>
+                            <a href="mailto:aminashameer232@gmail.com" target="_blank"
+                                class="text-teal-600 flex items-center gap-2">
+                                <i class="fas fa-envelope text-2xl"></i>
+                                <span>aminashameer232@gmail.com</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="https://www.linkedin.com/in/amina-shameer32" target="_blank"
+                                class="text-teal-600 flex items-center gap-2">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                                <span>amina-shameer32</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Contact Form -->
+                <div class="contact-form p-8 rounded-2xl shadow-xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-teal-600 font-medium mb-2">Name</label>
+                            <input type="text" name="name" id="name"
+                                class="w-full px-4 py-3 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-teal-600 font-medium mb-2">Email</label>
+                            <input type="email" name="email" id="email"
+                                class="w-full px-4 py-3 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-teal-600 font-medium mb-2">Subject</label>
+                            <input type="text" name="subject" id="subject"
+                                class="w-full px-4 py-3 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-teal-600 font-medium mb-2">Message</label>
+                            <textarea rows="5" name="message" id="message"
+                                class="w-full px-4 py-3 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                            SUBMIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="wave-bottom py-16 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Left Column -->
+                <div>
+
+                    <div class="flex gap-6">
+                            <a href="https://www.linkedin.com/in/amina-shameer32" target="_blank"
+                                class="social-icon text-white hover:text-yellow-300 p-3 rounded-full">
+                                <i class="fab fa-linkedin text-3xl"></i>
+                            </a>
+                            <a href="https://github.com/amina-s232" target="_blank"
+                                class="social-icon text-white hover:text-yellow-300 p-3 rounded-full">
+                                <i class="fab fa-github text-3xl"></i>amina-s232
+                            </a>
+                            <a href="mailto:aminashameer232@gmail.com" target="_blank"
+                                class="social-icon text-white hover:text-yellow-300 p-3 rounded-full">
+                                <i class="fas fa-envelope text-3xl"></i>
+                            </a>
+                        </div>
+
+
+
