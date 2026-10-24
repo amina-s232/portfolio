@@ -2,7 +2,7 @@
 
 My personal portfolio website. A static single-page site with a working contact form.
 
-**Live site:** https://your-portfolio-url.example.com
+
 
 ## Tech stack
 
